@@ -43,7 +43,7 @@ app.layout = dbc.Container(
         dbc.Input(id="input-field", type="text", placeholder="Enter text..."),
         dbc.Button("Print Text", id="print-button",
                    color="primary", className="mt-2"),
-        html.Div(id="card",className="cardclass"),
+        html.Div(id="card", className="cardclass"),
     ],
 )
 
@@ -58,73 +58,79 @@ def make_card(n_clicks, input_txt):
         loc = str(input_txt).capitalize()
         co = ai.get_co(loc)
         return dbc.Row([
-            dbc.Col(dbc.Card(
-            dbc.Row(
-                [
-                    html.H1("Weather", className="card-title"),
-                    dbc.Col(
-                        dbc.CardImg(
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp",
-                            className="img-fluid rounded-start",
+            dbc.Col(  #First card starts (first row first column card wise)
+            dbc.Card(
+                dbc.Row(
+                    [
+                        html.H1("Weather", className="card-title"),
+                        dbc.Col(
+                            dbc.CardImg(
+                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp",
+                                className="img-fluid rounded-start",
+                            ),
+                            width=4,
                         ),
-                        width=4,
-                    ),
-                    dbc.Col(
-                        dbc.CardBody(
-                            [
+                        dbc.Col(
+                            dbc.CardBody(
+                                [
 
-                                html.H2(f"{co}  CO"),
-                                html.Small(f"Temperature at {loc}")
-                            ]
+                                    html.H2(f"{co}  CO"),
+                                    html.Small(f"Temperature at {loc}")
+                                ]
+                            ),
+                            width=8,
                         ),
-                        width=8,
-                    ),
-                ],
+                    ],
 
-                style={"border-radius": 20,
-                       "background-color": "#86b7fe", "color": "white"}
+                    style={"border-radius": 20,
+                           "background-color": "#86b7fe", "color": "white"}
+
+                ),
+                className="mb-3",
+                style={"maxWidth": "240px"},
+            ),
+                className='six columns', lg=5, xl=4, sm=8),#First card Ends (first row first column card wise)
+
+
+
+            dbc.Col( #Second card starts (first row second column card wise)
+            dbc.Card(
+                dbc.Row(
+                    [
+                        html.H1("Weather", className="card-title"),
+                        dbc.Col(
+                            dbc.CardImg(
+                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp",
+                                className="img-fluid rounded-start",
+                            ),
+                            width=4,
+                        ),
+                        dbc.Col(
+                            dbc.CardBody(
+                                [
+
+                                    html.H2(f"{co}  CO"),
+                                    html.Small(f"Temperature at {loc}")
+                                ]
+                            ),
+                            width=8,
+                        ),
+                    ],
+
+                    style={"border-radius": 20,
+                           "background-color": "#86b7fe", "color": "white"}
+
+                ),
+                className="mb-3",
+                style={"maxWidth": "240px"},
 
             ),
-            className="mb-3",
-            style={"maxWidth": "240px"},
-        ),
-      className='six columns',lg=5,xl=4,sm=8 ),
+                className='six columns',
+                lg=5, xl=4, sm=8, ), #Second card Ends (first row second column card wise)
 
 
 
-            dbc.Col(dbc.Card(
-            dbc.Row(
-                [
-                    html.H1("Weather", className="card-title"),
-                    dbc.Col(
-                        dbc.CardImg(
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-weather/ilu3.webp",
-                            className="img-fluid rounded-start",
-                        ),
-                        width=4,
-                    ),
-                    dbc.Col(
-                        dbc.CardBody(
-                            [
 
-                                html.H2(f"{co}  CO"),
-                                html.Small(f"Temperature at {loc}")
-                            ]
-                        ),
-                        width=8,
-                    ),
-                ],
-
-                style={"border-radius": 20,
-                       "background-color": "#86b7fe", "color": "white"}
-
-            ),
-            className="mb-3",
-            style={"maxWidth": "240px"},
-            
-        ),
-     className='six columns',
-      lg=5,xl=4,sm=8, )
         ])
     return None
 
