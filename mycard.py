@@ -43,8 +43,7 @@ app.layout = dbc.Container(
         dbc.Input(id="input-field", type="text", placeholder="Enter text..."),
         dbc.Button("Print Text", id="print-button",
                    color="primary", className="mt-2"),
-        html.Div(id="card", style=dict(width="50%", backgroundImage="url('background.jpg')",
-                 backgroundSize="cover"), className="mt-3"),
+        html.Div(id="card",className="cardclass"),
     ],
 )
 
@@ -87,9 +86,9 @@ def make_card(n_clicks, input_txt):
 
             ),
             className="mb-3",
-            style={"maxWidth": "340px"},
+            style={"maxWidth": "240px"},
         ),
-       style=dict(padding=20,),lg=4,xl=5,sm=8 ),
+      className='six columns',lg=5,xl=4,sm=8 ),
 
 
 
@@ -121,10 +120,11 @@ def make_card(n_clicks, input_txt):
 
             ),
             className="mb-3",
-            style={"maxWidth": "340px"},
+            style={"maxWidth": "240px"},
+            
         ),
-     
-      lg=4,xl=5,sm=8, )
+     className='six columns',
+      lg=5,xl=4,sm=8, )
         ])
     return None
 
