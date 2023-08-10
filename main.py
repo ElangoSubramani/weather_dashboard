@@ -9,7 +9,7 @@ app.layout = dbc.Container(
     [
         html.H1("Enter Some Text"),
         dbc.Input(id="input-field", type="text", placeholder="Enter text..."),
-        dbc.Button("Print Text", id="print-button", color="primary", className="mt-2"),
+        dbc.Button("Search", id="print-button", color="primary", className="mt-2"),
         html.Div(id="output-text", className="mt-3"),
     ],
     className="mt-4",

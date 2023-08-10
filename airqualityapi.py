@@ -25,33 +25,57 @@ def get_data(loc):
         if response.status_code == 200:
             return response.json()
         else:
-            print("Error fetching data:", response.status_code)
+            return None         # print("Error fetching data:", response.status_code)
     else:
-        print("Error: Place name not found.")
+        return None
 
 
 
 def get_co(loc):
-    data = get_data(loc)
-    return data['stations'][0]['CO']
+    try:
+        data = get_data(loc)
+        return data['stations'][0]['CO']
+    except:
+        return None
 
-# def get_no2():
-#     return data['stations'][0]['NO2']
+def get_no2(loc):
+    try:
+        data = get_data(loc)
+        return data['stations'][0]['NO2']
+    except:
+        return None
 
-# def get_ozone():
-#     return data['stations'][0]['OZONE']
+def get_ozone(loc):
+    try:
+        data = get_data(loc)
+        return data['stations'][0]['OZONE']
+    except:
+        return None
 
-# def get_pm10():
-#     return data['stations'][0]['PM10']
+def get_pm10(loc):
+    try:
+        data = get_data(loc)
+        return data['stations'][0]['PM10']
+    except:
+        return None
 
-# def get_pm25():
-#     return data['stations'][0]['PM25']
+def get_pm25(loc):
+    try:
+        data = get_data(loc)
+        return data['stations'][0]['PM25']
+    except:
+        return None
 
-# def get_so2():
-#     return data['stations'][0]['SO2']
+def get_so2(loc):
+    try:
+        data = get_data(loc)
+        return data['stations'][0]['SO2']
+    except:
+        return None
 
 # if __name__ == "__main__":
-#     print("CO:", get_co())
+#     loc="chennai"
+#     print("CO:", get_co(loc))
 #     print("NO2:", get_no2())
 #     print("OZONE:", get_ozone())
 #     print("PM10:", get_pm10())

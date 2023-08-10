@@ -10,34 +10,48 @@ def get_weather_data(loc):
         if response.status_code == 200:
             return data
         else:
-            print('Error:', data['error']['info'])
+            return None
     except Exception as e:
         print('An error occurred:', str(e))
     return None
 
-def get_location(loc):
-    data= get_weather_data(loc)
-    return data['location']['name']
 
 def get_country(loc):
-    data= get_weather_data(loc)
-    return data['location']['country']
+    try:
+        data= get_weather_data(loc)
+        return data['location']['country']
+    except:
+        return None
 
 def get_temperature(loc):
-    data= get_weather_data(loc)
-    return data['current']['temperature']
+    try:
+        data= get_weather_data(loc)
+        return data['current']['temperature']
+    except:
+        return None
+
+
 
 def get_weather_description(loc):
-    data= get_weather_data(loc)
-    return data['current']['weather_descriptions'][0]
+    try:
+        data= get_weather_data(loc)
+        return data['current']['weather_descriptions'][0]
+    except:
+        return None
 
 def get_humidity(loc):
-    data= get_weather_data(loc)
-    return data['current']['humidity']
+    try:
+        data= get_weather_data(loc)
+        return data['current']['humidity']
+    except:
+        return None
 
 def get_wind_speed(loc):
-    data= get_weather_data(loc)
-    return data['current']['wind_speed']
+    try:
+        data= get_weather_data(loc)
+        return data['current']['wind_speed']
+    except:
+        None
 
 # if __name__ == "__main__":
 #     loc="chennai"
