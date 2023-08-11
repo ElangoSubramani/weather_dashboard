@@ -12,8 +12,8 @@ def get_weather_data(loc):
         else:
             return None
     except Exception as e:
-        print('An error occurred:', str(e))
-    return None
+        return None
+
 
 
 def get_country(loc):
