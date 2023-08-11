@@ -190,10 +190,11 @@ def make_card(n_clicks, input_txt):
         o3=ai.get_ozone(loc)
         so2=ai.get_so2(loc)
         pm10=ai.get_pm10(loc)
+        hum=wapi.get_humidity(loc)
         pm25=ai.get_pm25(loc)
         cnt=wapi.get_country(loc)
            
-        if loc == None or co == None or  no2==None or o3 ==  None or so2 == None or pm10== None or pm25==None:
+        if loc == None or co == None or  no2==None or o3 ==  None or so2 == None or pm10== None or pm25==None or hum==None:
             return html.H4("Try to refresh the page or API currently unavilable")
         
         return dbc. Container([dbc.Row([
@@ -325,9 +326,10 @@ def make_card(n_clicks, input_txt):
         so2=ai.get_so2(loc)
         pm10=ai.get_pm10(loc)
         pm25=ai.get_pm25(loc)
+        hum=wapi.get_humidity(loc)
         cnt=wapi.get_country(loc)
            
-        if loc == None or co == None or  no2==None or o3 ==  None or so2 == None or pm10== None or pm25==None:
+        if loc == None or co == None or  no2==None or o3 ==  None or so2 == None or pm10== None or pm25==None or hum==None:
             return html.H3("Else Check your internet connection or data not avilabe right now")
         
         return dbc. Container([dbc.Row([
