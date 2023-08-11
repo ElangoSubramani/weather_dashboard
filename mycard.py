@@ -12,42 +12,30 @@ app.layout = dbc.Container(
     [
         dbc.Row([
             dbc.Col(
-                html.H1("Weather Monitoring", style=dict( color="#0c6ffd")), xl=5, lg=6, sm=8),
-            dbc.Col([
-                html.A(
+                html.H1("Weather Monitoring DashBoard", style=dict( color="#0c6ffd")), xl=7, lg=9, sm=12),
+            
+            # dbc.Col([html.H1("Developer",style=dict( color="#0c6ffd"))]),
+            # dbc.Col([
 
-                    html.Img(
-                        # LinkedIn logo image URL
-                        src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-512.png",
-                        height=50,  # Adjust the height as needed
+            #         # html.A(
 
-                    ),
-                    href="https://www.linkedin.com/in/elango-s-578770229/",  # LinkedIn profile URL
-                    target="_blank",  # Open link in a new tab
-                ),
-            ]),
-            dbc.Col([html.H1("Developer",style=dict( color="#0c6ffd"))]),
-            dbc.Col([
+            #         #     html.Img(
+            #         #         src="assets/1687361194136.jpg",  # LinkedIn logo image URL
+            #         #         height=50,  # Adjust the height as needed
 
-                    # html.A(
-
-                    #     html.Img(
-                    #         src="assets/1687361194136.jpg",  # LinkedIn logo image URL
-                    #         height=50,  # Adjust the height as needed
-
-                    #     ),
-                    # ),
-                    ])
+            #         #     ),
+            #         # ),
+            #         ])
         ]),
 
 
         dbc.Input(id="input-field", type="text", placeholder="Enter text..."),
-        dbc.Button("Print Text", id="print-button",
+        dbc.Button("Search", id="print-button",
                    color="primary", className="mt-2"),
         html.Div(id="card", className="cardclass"),
         html.Div(id="card2", className="cardclass"),
-        html.Div(id="card3", className="cardclass")
-        # html.Div(id="card4", className="cardclass"),
+        html.Div(id="card3", className="cardclass"),
+        html.Div(id="card4", className="cardlass"),
     ],
 )
 
@@ -347,10 +335,10 @@ def make_card(n_clicks, input_txt):
                 dbc.Card(
                     dbc.Row(
                         [
-                            html.H1(f"Particulate Matter (PM10)", className="card-title"),
+                            html.H1(f"Particulate Matter 10", className="card-title"),
                             dbc.Col(
                                 dbc.CardImg(
-                                    src="assets\icons8-toxic-48.png",
+                                    src="assets\icons8-wind-64.png",
                                     className="img-fluid rounded-start",
                                 ),
                                 width=4,
@@ -368,11 +356,11 @@ def make_card(n_clicks, input_txt):
                         ],
 
                         style={"border-radius": 20,
-                               "background-color": "#0c6ffd", "color": "white"}
+                               "background-color": "#559afe", "color": "white"}
 
                     ),
                     className="mb-3",
-                    style={"maxWidth": "440px"},
+                    style={"maxWidth": "340px"},
                 ),
                 className='six columns', lg=5, xl=5, sm=8),  # First card Ends (Third row first column card wise)
 
@@ -403,11 +391,11 @@ def make_card(n_clicks, input_txt):
                         ],
 
                         style={"border-radius": 20,
-                               "background-color": "#0c6ffd", "color": "white"}
+                               "background-color": "#559afe", "color": "white"}
 
                     ),
                     className="mb-3",
-                    style={"maxWidth": "440px"},
+                    style={"maxWidth": "340px"},
 
                 ),
                 className='six columns',
@@ -415,6 +403,59 @@ def make_card(n_clicks, input_txt):
             # Thired card:
         ])
         ])
+    
+
+#ABOUT
+@app.callback(
+    Output("card4", "children"),
+    [Input("print-button", "n_clicks")],
+    [State("input-field", "value")],
+)
+def make_about(input,n_clicks):
+    return dbc.Container( dbc.Row([html.H2("About:",style=dict( color="#0c6ffd")),
+                
+
+                    html.A(
+
+                        html.Img(
+                            src="assets/1687361194136.jpg",  # LinkedIn logo image URL
+                            height=100,  # Adjust the height as needed
+
+                        ),
+                    ),
+                    html.P("""
+                        I'm Elango 
+                        Passionate about data analysis and engineering, I can create custom data-driven web apps using python (Plotly with Dash) translating data into actionable insights.
+1.)Data cleaning, processing and transformation
+2.)Building customized analytic web apps and dashboards
+3.)Mobile Application using Flutter Bloc.
+                           This DashBoard was Developed using Dash which triggers the data from weatherstack API and api.ambeedata.com API. This app is developed for Educational Purpose.
+                        By just providing the city name  one can easily understand the weather and air quality  with the help of those KPIs at Realtime(lively)
+ Let's connect and innovate together!
+
+
+                         """),
+                         html.H6("Git Hub: https://github.com/ElangoSubramani"),
+
+                   
+            dbc.Col([
+                 html.H4(" ",style=dict( color="#0c6ffd")),
+            ]),
+            dbc.Col([
+                html.A(
+
+                    html.Img(
+                        # LinkedIn logo image URL
+                        src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/linkedin_circle_color-512.png",
+                        height=50,  # Adjust the height as needed
+
+                    ),
+                    href="https://www.linkedin.com/in/elangosubramani",  # LinkedIn profile URL
+                    target="_blank",  # Open link in a new tab
+                ),
+            ]),
+                    ]),
+                    )
 
 if __name__ == "__main__":
     app.run_server(debug=True)
