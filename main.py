@@ -215,7 +215,7 @@ def make_card(n_clicks, input_txt):
                                     [
 
                                         html.H2(f"{co}  CO"),
-                                        html.Small(f"Temperature at {loc}")
+                                        html.Small(f"{loc}({cnt})")
                                     ]
                                 ),
                                 width=10,
@@ -431,7 +431,7 @@ def make_about(input,n_clicks):
 1.)Data cleaning, processing and transformation
 2.)Building customized analytic web apps and dashboards
 3.)Mobile Application using Flutter Bloc.
-                           This DashBoard was Developed using Dash which triggers the data from weatherstack API and api.ambeedata.com API. This app is developed for Educational Purpose.
+                        This DashBoard was Developed using Dash which triggers the data from weatherstack API and api.ambeedata.com API. This app is developed for Educational Purpose.
                         By just providing the city name  one can easily understand the weather and air quality  with the help of those KPIs at Realtime(lively)
  Let's connect and innovate together!
 
