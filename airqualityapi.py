@@ -31,10 +31,10 @@ def get_data(loc):
 
 
 
-def get_co(loc):
+def get_AQI(loc):
     try:
         data = get_data(loc)
-        return data['stations'][0]['CO']
+        return data['stations'][0]['AQI']
     except:
         return None
 

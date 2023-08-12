@@ -1,6 +1,6 @@
 import requests
 def get_weather_data(loc):
-    W_API_KEY = 'd853b076ffa7f29a3a0992fe98fba4b6'
+    W_API_KEY = 'f4dd41ba6c5e936b1ed53e2d07831966'
     LOCATION = loc
     BASE_URL = 'http://api.weatherstack.com/current'
     url = f'{BASE_URL}?access_key={W_API_KEY}&query={LOCATION}'

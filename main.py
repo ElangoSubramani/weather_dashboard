@@ -3,6 +3,7 @@ from dash import Dash, dcc, html, Input, Output, State
 import dash_bootstrap_components as dbc
 import airqualityapi as ai
 import weatherapi as wapi
+import plotly.express as px
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP],
                 meta_tags=[{'name': 'viewport','content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}])
@@ -35,9 +36,13 @@ app.layout = dbc.Container(
         html.Div(id="card", className="cardclass"),
         html.Div(id="card2", className="cardclass"),
         html.Div(id="card3", className="cardclass"),
-        html.Div(id="card4", className="cardlass"),
+        html.Div(
+                 id="card4", className="cardlass",),
+       
+      
     ],
 )
+#barchart
 
 
 @app.callback(
@@ -48,11 +53,12 @@ app.layout = dbc.Container(
 def make_card(n_clicks, input_txt):
     if n_clicks and input_txt:  # Check if n_clicks and input have values
         loc = str(input_txt).capitalize()
-        des=wapi.get_weather_description(loc)
-        temp=wapi.get_temperature(loc)
-        hum=wapi.get_humidity(loc)
-        ws=wapi.get_wind_speed(loc)
-        cnt=wapi.get_country(loc)
+        data = wapi.get_weather_data(loc)
+        des=data['current']['weather_descriptions'][0]
+        temp=data['current']['temperature']
+        hum=data['current']['humidity']
+        ws=data['current']['wind_speed']
+        cnt=data['location']['country']
         if des == "Cloudy":
              ic="assets\icons8-cloudy.gif"
         else:
@@ -185,7 +191,7 @@ def make_card(n_clicks, input_txt):
 def make_card(n_clicks, input_txt):
     if n_clicks and input_txt:  # Check if n_clicks and input have values
         loc = str(input_txt).capitalize()
-        co=ai.get_co(loc)
+        co=ai.get_AQI(loc)
         no2=ai.get_no2(loc)
         o3=ai.get_ozone(loc)
         so2=ai.get_so2(loc)
@@ -202,7 +208,7 @@ def make_card(n_clicks, input_txt):
                 dbc.Card(
                     dbc.Row(
                         [
-                            html.H1(f"Carbon Monoxide", className="card-title"),
+                            html.H1(f"Air Quality Index", className="card-title"),
                             dbc.Col(
                                 dbc.CardImg(
                                     src="assets\icons8-car-pollution-48.png",
@@ -214,7 +220,7 @@ def make_card(n_clicks, input_txt):
                                 dbc.CardBody(
                                     [
 
-                                        html.H2(f"{co}  CO"),
+                                        html.H2(f"{co}  AQI"),
                                         html.Small(f"{loc}({cnt})")
                                     ]
                                 ),
@@ -320,18 +326,39 @@ def make_card(n_clicks, input_txt):
 def make_card(n_clicks, input_txt):
     if n_clicks and input_txt:  # Check if n_clicks and input have values
         loc = str(input_txt).capitalize()
-        co=ai.get_co(loc)
+        co=ai.get_AQI(loc)
         no2=ai.get_no2(loc)
         o3=ai.get_ozone(loc)
         so2=ai.get_so2(loc)
         pm10=ai.get_pm10(loc)
         pm25=ai.get_pm25(loc)
-        hum=wapi.get_humidity(loc)
-        cnt=wapi.get_country(loc)
+        data = wapi.get_weather_data(loc)
+        des=data['current']['weather_descriptions'][0]
+        temp=data['current']['temperature']
+        hum=data['current']['humidity']
+        ws=data['current']['wind_speed']
+        cnt=data['location']['country']
+        
            
         if loc == None or co == None or  no2==None or o3 ==  None or so2 == None or pm10== None or pm25==None or hum==None:
             return html.H3("Else Check your internet connection or data not avilabe right now")
-        
+        else:
+            temp=int(wapi.get_temperature(loc))
+        hum=int(wapi.get_humidity(loc))
+        ws=int(wapi.get_wind_speed(loc))
+        fig = px.bar(
+            x=[ 'Temperature', 'Humidity', 'Wind Speed',"Aor Quality Index","Nitrous Oxide","Sulphur Dioxide","Particulate Matter 10","Particulate Matter 25"],
+            y=[temp, hum, ws,co,no2,so2,pm10,pm25],
+    
+        )
+        fig.update_traces(marker_color="#86b7fe"),
+        fig.update_xaxes(title_text='Weather Parameter'),
+        fig.update_yaxes(title_text='Value'),
+        fig.update_layout(
+            
+            
+            template='none',  title=f'Weather Type: {des}',plot_bgcolor="#fce4c4",)
+           
         return dbc. Container([dbc.Row([
             dbc.Col(  # First card starts (Third row first column card wise)
                 dbc.Card(
@@ -403,6 +430,7 @@ def make_card(n_clicks, input_txt):
                 className='six columns',
                 lg=5, xl=5, sm=8, ),  # Second card Ends (Third row second column card wise)
             # Thired card:
+            html.Div( dcc.Graph(figure=fig)),
         ])
         ])
     
@@ -460,4 +488,4 @@ def make_about(input,n_clicks):
                     )
 
 if __name__ == "__main__":
-    app.run_server(port=8000,debug=False)
+    app.run_server(port=8000,debug=True)
