@@ -24,7 +24,7 @@ Flask==2.2.5
 future==0.18.3
 geocoder==1.38.1
 geographiclib==2.0
-gunicorn==21.2.0
+gunicorn
 identify==2.5.26
 idna==3.4
 iniconfig==2.0.0
