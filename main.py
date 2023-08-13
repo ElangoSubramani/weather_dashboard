@@ -466,7 +466,11 @@ def make_about(input,n_clicks):
 
 
                          """),
+                          html.A(
                          html.H6("Git Hub: https://github.com/ElangoSubramani"),
+                         href="https://github.com/ElangoSubramani",  # LinkedIn profile URL
+                    target="_blank",
+                         ),
 
                    
             dbc.Col([
