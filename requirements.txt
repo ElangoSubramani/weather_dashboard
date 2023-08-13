@@ -25,7 +25,7 @@ future==0.18.3
 geocoder==1.38.1
 geographiclib==2.0
 gunicorn
-identify==2.5.26
+identify
 idna==3.4
 iniconfig==2.0.0
 itsdangerous==2.1.2
