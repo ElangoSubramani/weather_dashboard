@@ -34,9 +34,10 @@ app.layout = dbc.Container(
         dbc.Input(id="input-field", type="text", placeholder="Enter text..."),
         dbc.Button("Search", id="print-button",
                    color="primary", className="mt-2"),
-       html.Div(id="card2", className="cardclass"),
-        html.Div(id="card3", className="cardclass"),
+       
         html.Div(id="card", className="cardclass"),
+      html.Div(id="card2", className="cardclass"),
+        html.Div(id="card3", className="cardclass"),
        
         html.Div(
                  id="card4", className="cardlass",),
