@@ -350,7 +350,7 @@ def make_card(n_clicks, input_txt):
         hum=int(wapi.get_humidity(loc))
         ws=int(wapi.get_wind_speed(loc))
         fig = px.bar(
-            x=[ 'Temperature', 'Humidity', 'Wind Speed',"Aor Quality Index","Nitrous Oxide","Sulphur Dioxide","Particulate Matter 10","Particulate Matter 25"],
+            x=[ 'Temperature', 'Humidity', 'Wind Speed',"Air Quality Index","Nitrogen Dioxide","Sulfur Dioxide","Particulate Matter 10","Particulate Matter 25"],
             y=[temp, hum, ws,co,no2,so2,pm10,pm25],
     
         )
