@@ -5,7 +5,7 @@ import geocoder
 
 def get_data(loc):
     
-    API_KEY = "000310e429ee156f2b50849237f79207ae464dd80d32224e1c4b44811c9e596e"
+    API_KEY = "14842c6440662011587a3c43bd131abc1d35d1d65af9878d922d87ecaeb4503e"
     place_name = str(loc)
 
     location = geocoder.osm(place_name)
